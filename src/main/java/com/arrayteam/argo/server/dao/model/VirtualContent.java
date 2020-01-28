@@ -19,7 +19,7 @@ import java.util.List;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-public class Target {
+public class VirtualContent {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -31,7 +31,7 @@ public class Target {
     @UpdateTimestamp
     private Date updatedAt;
 
-    @OneToMany(mappedBy = "target", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "virtualContent", cascade = CascadeType.ALL)
     @JsonIgnore
     private List<ARC> arcs = new ArrayList<>();
 

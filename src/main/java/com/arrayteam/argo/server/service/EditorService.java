@@ -30,8 +30,10 @@ public class EditorService {
         return target;
     }
 
-    public void edit(Target targetFromDB, Target newTarget) {
+    public Target edit(Target targetFromDB, Target newTarget) {
         BeanUtils.copyProperties(newTarget, targetFromDB, "id");
+
+        return targetRepository.save(targetFromDB);
     }
 
     public Target destroy(Target target) {

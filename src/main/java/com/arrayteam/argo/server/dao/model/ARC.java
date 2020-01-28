@@ -10,29 +10,37 @@ import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 
 @Data
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-public class Target {
+public class ARC {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @NotBlank
     private String name;
+    @NotBlank
+    private String description;
+    private String views;
+    private String rate;
     @CreationTimestamp
     private Date createdAt;
     @UpdateTimestamp
     private Date updatedAt;
 
-    @OneToMany(mappedBy = "target", cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "target_id", nullable = false)
     @JsonIgnore
-    private List<ARC> arcs = new ArrayList<>();
+    private Target target;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "virtual_content_id", nullable = false)
+    @JsonIgnore
+    private VirtualContent virtualContent;
 
 }

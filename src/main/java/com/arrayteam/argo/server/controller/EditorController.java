@@ -34,8 +34,8 @@ public class EditorController {
     }
 
     @PatchMapping("/{id}")
-    public void edit(@PathVariable("id") Target targetFromDB, @RequestBody Target newTarget) {
-        editorService.edit(targetFromDB, newTarget);
+    public Target edit(@PathVariable("id") Target targetFromDB, @RequestBody Target newTarget) {
+        return editorService.edit(targetFromDB, newTarget);
     }
 
     @DeleteMapping("/{id}")
