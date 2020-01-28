@@ -26,7 +26,7 @@ public class Target {
     private Long id;
     private String name;
     @Lob
-    private Blob photo;
+    private Blob data;
     @CreationTimestamp
     private Date createdAt;
     @UpdateTimestamp
