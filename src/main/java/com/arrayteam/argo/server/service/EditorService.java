@@ -2,11 +2,11 @@ package com.arrayteam.argo.server.service;
 
 
 import com.arrayteam.argo.server.dao.model.Target;
+import com.arrayteam.argo.server.dao.response.TargetResponse;
 import com.arrayteam.argo.server.repository.TargetRepository;
 import org.springframework.beans.BeanUtils;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 
 @Service
@@ -18,16 +18,19 @@ public class EditorService {
         this.targetRepository = targetRepository;
     }
 
-    public Target store(Target target) {
-        return targetRepository.save(target);
+    public TargetResponse store(Target target) {
+        return new TargetResponse().success(targetRepository.save(target));
     }
 
-    public List<Target> showAll() {
-        return targetRepository.findAll();
+    public TargetResponse showAll() {
+        return new TargetResponse().success(targetRepository.findAll());
     }
 
-    public Target showOne(Target target) {
-        return target;
+    public TargetResponse showOne(Target target) {
+        if (target == null)
+            return new TargetResponse().error(HttpStatus.NOT_FOUND, "Resource not found");
+
+        return new TargetResponse().success(target);
     }
 
     public Target edit(Target targetFromDB, Target newTarget) {
@@ -36,10 +39,13 @@ public class EditorService {
         return targetRepository.save(targetFromDB);
     }
 
-    public Target destroy(Target target) {
+    public TargetResponse destroy(Target target) {
+        if (target == null)
+            return new TargetResponse().error(HttpStatus.BAD_REQUEST, "Resource with selected id not found");
+
         targetRepository.delete(target);
 
-        return target;
+        return new TargetResponse().success(target);
     }
 
 }

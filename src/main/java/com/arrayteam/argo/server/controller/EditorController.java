@@ -2,10 +2,9 @@ package com.arrayteam.argo.server.controller;
 
 
 import com.arrayteam.argo.server.dao.model.Target;
+import com.arrayteam.argo.server.dao.response.TargetResponse;
 import com.arrayteam.argo.server.service.EditorService;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 
 @RestController
@@ -19,17 +18,17 @@ public class EditorController {
     }
 
     @PostMapping
-    public Target store(@RequestBody Target target) {
+    public TargetResponse store(@RequestBody Target target) {
         return editorService.store(target);
     }
 
     @GetMapping
-    public List<Target> showAll() {
+    public TargetResponse showAll() {
         return editorService.showAll();
     }
 
     @GetMapping("/{id}")
-    public Target showOne(@PathVariable("id") Target target) {
+    public TargetResponse showOne(@PathVariable("id") Target target) {
         return editorService.showOne(target);
     }
 
@@ -39,7 +38,7 @@ public class EditorController {
     }
 
     @DeleteMapping("/{id}")
-    public Target destroy(@PathVariable("id") Target target) {
+    public TargetResponse destroy(@PathVariable("id") Target target) {
         return editorService.destroy(target);
     }
 
