@@ -7,18 +7,24 @@ import com.arrayteam.argo.server.repository.TargetRepository;
 import org.springframework.beans.BeanUtils;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.IOException;
 
 
 @Service
-public class EditorService {
+public class TargetService {
 
     private final TargetRepository targetRepository;
+    private final ImageService imageService;
 
-    public EditorService(TargetRepository targetRepository) {
+    public TargetService(TargetRepository targetRepository, ImageService imageService) {
         this.targetRepository = targetRepository;
+        this.imageService = imageService;
     }
 
-    public TargetResponse store(Target target) {
+    public TargetResponse store(Target target, MultipartFile image) throws IOException {
+        target.setData(imageService.validate(image));
         return new TargetResponse().success(targetRepository.save(target));
     }
 
