@@ -30,7 +30,8 @@ public class SwaggerConfiguration {
                 .pathMapping("/")
                 .tags(
                         new Tag("TargetController", "Control work with markers"),
-                        new Tag("ARCController", "Control the type of tracking, markers and virtual content")
+                        new Tag("ARCController", "Control the type of tracking, markers and virtual content"),
+                        new Tag("VirtualContentController", "Control work with virtual content")
                 );
     }
 

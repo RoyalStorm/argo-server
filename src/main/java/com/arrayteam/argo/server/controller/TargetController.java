@@ -8,9 +8,6 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
-
-import java.io.IOException;
 
 
 @RestController
@@ -23,12 +20,6 @@ public class TargetController {
     @Autowired
     public TargetController(TargetService targetService) {
         this.targetService = targetService;
-    }
-
-    @PostMapping
-    @ApiOperation(value = "Create target", response = TargetResponse.class)
-    public TargetResponse store(@RequestBody Target target, @RequestParam("image") MultipartFile image) throws IOException {
-        return targetService.store(target, image);
     }
 
     @GetMapping

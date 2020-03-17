@@ -9,7 +9,6 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
-import java.sql.Blob;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -26,7 +25,7 @@ public class VirtualContent {
     private Long id;
     private String name;
     @Lob
-    private Blob data;
+    private byte[] data;
     @CreationTimestamp
     private Date createdAt;
     @UpdateTimestamp
