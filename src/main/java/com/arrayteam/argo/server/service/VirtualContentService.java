@@ -10,6 +10,7 @@ import com.arrayteam.argo.server.repository.TargetRepository;
 import com.arrayteam.argo.server.repository.VirtualContentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
@@ -21,24 +22,32 @@ public class VirtualContentService {
     private final VirtualContentRepository virtualContentRepository;
     private final TargetRepository targetRepository;
     private final ARCRepository arcRepository;
-    private final ImageService imageService;
 
     @Autowired
-    public VirtualContentService(VirtualContentRepository virtualContentRepository, TargetRepository targetRepository, ARCRepository arcRepository, ImageService imageService) {
+    public VirtualContentService(VirtualContentRepository virtualContentRepository, TargetRepository targetRepository, ARCRepository arcRepository) {
         this.virtualContentRepository = virtualContentRepository;
         this.targetRepository = targetRepository;
         this.arcRepository = arcRepository;
-        this.imageService = imageService;
     }
 
     public VirtualContentResponse store(Long userId, MultipartFile image) throws IOException {
         VirtualContent virtualContent = new VirtualContent();
-        virtualContent.setData(imageService.validate(image));
-
         Target target = new Target();
         ARC arc = new ARC();
 
+        String extension = getExtension(StringUtils.cleanPath(image.getOriginalFilename()));
+
+        if (extension.equals("png") || extension.equals("jpg")) {
+            virtualContent.setData(image.getBytes());
+        }
+
         return new VirtualContentResponse().success(virtualContentRepository.save(virtualContent));
+    }
+
+    private String getExtension(String fileName) {
+        final int EXTENSION_INDEX = 1;
+
+        return fileName.split("\\.")[EXTENSION_INDEX].toLowerCase();
     }
 
 }

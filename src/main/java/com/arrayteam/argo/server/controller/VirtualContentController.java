@@ -1,9 +1,11 @@
 package com.arrayteam.argo.server.controller;
 
 
+import com.arrayteam.argo.server.dao.response.TargetResponse;
 import com.arrayteam.argo.server.dao.response.VirtualContentResponse;
 import com.arrayteam.argo.server.service.VirtualContentService;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,6 +29,7 @@ public class VirtualContentController {
     }
 
     @PostMapping
+    @ApiOperation(value = "Upload virtual content", response = TargetResponse.class)
     public VirtualContentResponse store(@RequestParam("userId") Long userId, @RequestParam("image") MultipartFile image) throws IOException {
         return virtualContentService.store(userId, image);
     }
