@@ -2,6 +2,7 @@ package com.arrayteam.argo.server.dao.model;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -9,40 +10,31 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 
 @Data
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-public class ARC {
-
+public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @ApiModelProperty(value = "User's unique id", example = "96")
     private Long id;
+    @ApiModelProperty(value = "User's name")
     private String name;
-    private String description;
-    private String views;
-    private String rate;
     @CreationTimestamp
+    @ApiModelProperty(value = "Create date")
     private Date createdAt;
     @UpdateTimestamp
+    @ApiModelProperty(value = "Update date")
     private Date updatedAt;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "target_id")
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     @JsonIgnore
-    private Target target;
-
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "virtual_content_id")
-    @JsonIgnore
-    private VirtualContent virtualContent;
-
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "user_id")
-    @JsonIgnore
-    private User user;
+    private List<ARC> arcs = new ArrayList<>();
 
 }
