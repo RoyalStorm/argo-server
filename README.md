@@ -30,4 +30,4 @@ Replace `url` field with your params. In my case it looks like:
 jdbc:mysql://localhost:3306/argo?useLegacyDatetimeCode=false&serverTimezone=Asia/Vladivostok
 ```
 
-After this go to `localhost:8080/swagger-ui.html`.
+After this go to `localhost:8080`.

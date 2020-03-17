@@ -16,7 +16,7 @@ public class HomeController {
     }
 
     @RequestMapping("/docs")
-    public String swagger() {
+    public String docs() {
         return "redirect:/swagger-ui.html";
     }
 
