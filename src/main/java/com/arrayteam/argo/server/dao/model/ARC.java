@@ -31,12 +31,12 @@ public class ARC {
     private Date updatedAt;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "target_id", nullable = false)
+    @JoinColumn(name = "target_id")
     @JsonIgnore
     private Target target;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "virtual_content_id", nullable = false)
+    @JoinColumn(name = "virtual_content_id")
     @JsonIgnore
     private VirtualContent virtualContent;
 

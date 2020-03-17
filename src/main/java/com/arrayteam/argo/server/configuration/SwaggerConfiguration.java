@@ -29,7 +29,8 @@ public class SwaggerConfiguration {
                 )
                 .pathMapping("/")
                 .tags(
-                        new Tag("TargetController", "Marker's data")
+                        new Tag("TargetController", "Control work with markers"),
+                        new Tag("ARCController", "Control the type of tracking, markers and virtual content")
                 );
     }
 

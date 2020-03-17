@@ -5,6 +5,7 @@ import com.arrayteam.argo.server.dao.model.Target;
 import com.arrayteam.argo.server.dao.response.TargetResponse;
 import com.arrayteam.argo.server.repository.TargetRepository;
 import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -18,6 +19,7 @@ public class TargetService {
     private final TargetRepository targetRepository;
     private final ImageService imageService;
 
+    @Autowired
     public TargetService(TargetRepository targetRepository, ImageService imageService) {
         this.targetRepository = targetRepository;
         this.imageService = imageService;

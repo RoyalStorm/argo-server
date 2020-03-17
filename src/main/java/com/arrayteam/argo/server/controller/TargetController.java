@@ -14,7 +14,7 @@ import java.io.IOException;
 
 
 @RestController
-@RequestMapping("/api/editor")
+@RequestMapping("/api/target")
 @Api(tags = "TargetController")
 public class TargetController {
 
