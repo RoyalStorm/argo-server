@@ -1,3 +1,7 @@
+<div align="center">
+    <img src="assets/argo-logo.png" alt="ARGO">
+</div>
+
 # ARGO server
 Server for AR service to create effects of augmented reality "ARGO".
 
