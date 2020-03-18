@@ -40,10 +40,14 @@ public class VirtualContentService {
 
         if (extension.equals("png") || extension.equals("jpg")) {
             virtualContent.setData(content.getBytes());
-            virtualContent.setName(String.valueOf(new Random().nextInt()));
+            virtualContent.setName(String.valueOf(new Random().nextLong()));
         }
 
         return new VirtualContentResponse().success(virtualContentRepository.save(virtualContent));
+    }
+
+    public VirtualContentResponse showAll() {
+        return new VirtualContentResponse().success(virtualContentRepository.findAll());
     }
 
     private String getExtension(String fileName) {

@@ -22,6 +22,12 @@ public class TargetController {
         this.targetService = targetService;
     }
 
+    @PostMapping
+    @ApiOperation(value = "Create target", response = TargetResponse.class)
+    public TargetResponse store(@RequestBody Target target) {
+        return targetService.store(target);
+    }
+
     @GetMapping
     @ApiOperation(value = "Get a list of targets", response = TargetResponse.class)
     public TargetResponse showAll() {
