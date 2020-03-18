@@ -1,15 +1,13 @@
 package com.arrayteam.argo.server.controller;
 
 
+import com.arrayteam.argo.server.dao.model.VirtualContent;
 import com.arrayteam.argo.server.dao.response.VirtualContentResponse;
 import com.arrayteam.argo.server.service.VirtualContentService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
-
-import java.io.IOException;
 
 
 @RestController
@@ -26,9 +24,8 @@ public class VirtualContentController {
 
     @PostMapping
     @ApiOperation(value = "Create virtual content", response = VirtualContentResponse.class)
-    public VirtualContentResponse store(@RequestParam("userId") Long userId,
-                                        @RequestParam("content") MultipartFile content) throws IOException {
-        return virtualContentService.store(userId, content);
+    public VirtualContentResponse store(@RequestBody VirtualContent virtualContent) {
+        return virtualContentService.store(virtualContent);
     }
 
     @GetMapping

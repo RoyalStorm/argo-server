@@ -1,26 +1,41 @@
 package com.arrayteam.argo.server.service;
 
 
+import com.arrayteam.argo.server.dao.model.ARC;
 import com.arrayteam.argo.server.dao.model.Target;
+import com.arrayteam.argo.server.dao.model.VirtualContent;
 import com.arrayteam.argo.server.dao.response.TargetResponse;
 import com.arrayteam.argo.server.repository.TargetRepository;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.IOException;
+import java.util.Random;
 
 
 @Service
 public class TargetService {
 
     private final TargetRepository targetRepository;
+    private final ContentService contentService;
 
     @Autowired
-    public TargetService(TargetRepository targetRepository) {
+    public TargetService(TargetRepository targetRepository, ContentService contentService) {
         this.targetRepository = targetRepository;
+        this.contentService = contentService;
     }
 
-    public TargetResponse store(Target target) {
+    public TargetResponse store(Long userId, MultipartFile content) throws IOException {
+        Target target = new Target();
+        VirtualContent virtualContent = new VirtualContent();
+        ARC arc = new ARC();
+
+        target.setData(content.getBytes());
+        target.setName(String.valueOf(new Random().nextLong()));
+
         return new TargetResponse().success(targetRepository.save(target));
     }
 
