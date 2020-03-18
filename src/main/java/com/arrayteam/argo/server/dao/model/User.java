@@ -20,15 +20,19 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 public class User {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @ApiModelProperty(value = "User's unique id", example = "7")
     private Long id;
+
     @ApiModelProperty(value = "User's name")
     private String name;
+
     @CreationTimestamp
     @ApiModelProperty(value = "Create date")
     private Date createdAt;
+
     @UpdateTimestamp
     @ApiModelProperty(value = "Update date")
     private Date updatedAt;

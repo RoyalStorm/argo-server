@@ -14,7 +14,6 @@ import java.util.List;
 public class Response<T, R extends Response<T, ?>> {
 
     @JsonBackReference
-    @JsonIgnore
     protected final R self;
 
     protected Integer count;
@@ -23,7 +22,7 @@ public class Response<T, R extends Response<T, ?>> {
     protected String message;
     protected List<T> data;
 
-    public Response(final Class<R> selfClass) {
+    protected Response(final Class<R> selfClass) {
         this.self = selfClass.cast(this);
     }
 

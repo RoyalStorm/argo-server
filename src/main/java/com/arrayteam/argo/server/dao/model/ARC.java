@@ -23,17 +23,23 @@ public class ARC {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @ApiModelProperty(value = "ARC's unique id", example = "7")
     private Long id;
+
     @ApiModelProperty(value = "Augmented reality content name")
     private String name;
+
     @ApiModelProperty(value = "Augmented reality content description")
     private String description;
+
     @ApiModelProperty(value = "Views number")
     private String views;
+
     @ApiModelProperty(value = "Augmented reality content rate")
     private String rate;
+
     @CreationTimestamp
     @ApiModelProperty(value = "Create date")
     private Date createdAt;
+
     @UpdateTimestamp
     @ApiModelProperty(value = "Update date")
     private Date updatedAt;

@@ -14,6 +14,7 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.util.Random;
 
 
 @Service
@@ -30,15 +31,16 @@ public class VirtualContentService {
         this.arcRepository = arcRepository;
     }
 
-    public VirtualContentResponse store(Long userId, MultipartFile image) throws IOException {
+    public VirtualContentResponse store(Long userId, MultipartFile content) throws IOException {
         VirtualContent virtualContent = new VirtualContent();
         Target target = new Target();
         ARC arc = new ARC();
 
-        String extension = getExtension(StringUtils.cleanPath(image.getOriginalFilename()));
+        String extension = getExtension(StringUtils.cleanPath(content.getOriginalFilename()));
 
         if (extension.equals("png") || extension.equals("jpg")) {
-            virtualContent.setData(image.getBytes());
+            virtualContent.setData(content.getBytes());
+            virtualContent.setName(String.valueOf(new Random().nextInt()));
         }
 
         return new VirtualContentResponse().success(virtualContentRepository.save(virtualContent));

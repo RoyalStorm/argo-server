@@ -30,8 +30,9 @@ public class VirtualContentController {
 
     @PostMapping
     @ApiOperation(value = "Upload virtual content", response = TargetResponse.class)
-    public VirtualContentResponse store(@RequestParam("userId") Long userId, @RequestParam("image") MultipartFile image) throws IOException {
-        return virtualContentService.store(userId, image);
+    public VirtualContentResponse store(@RequestParam("userId") Long userId,
+                                        @RequestParam("content") MultipartFile content) throws IOException {
+        return virtualContentService.store(userId, content);
     }
 
 }
