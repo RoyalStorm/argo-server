@@ -28,7 +28,7 @@ public class Target {
     private Long id;
 
     @ApiModelProperty(value = "Target's type")
-    private String type;
+    private Type.TargetType type;
 
     @CreationTimestamp
     @ApiModelProperty(value = "Create date")

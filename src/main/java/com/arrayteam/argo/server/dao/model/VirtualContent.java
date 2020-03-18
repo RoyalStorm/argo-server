@@ -28,7 +28,7 @@ public class VirtualContent {
     private Long id;
 
     @ApiModelProperty(value = "Virtual content's type")
-    private String type;
+    private Type.VirtualContentType type;
 
     @CreationTimestamp
     @ApiModelProperty(value = "Create date")
