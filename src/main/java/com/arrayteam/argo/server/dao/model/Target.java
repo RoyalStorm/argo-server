@@ -16,7 +16,7 @@ import java.util.List;
 
 
 @Data
-@Table
+@Table(name = "Targets")
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
@@ -27,11 +27,8 @@ public class Target {
     @ApiModelProperty(value = "Target's unique id", example = "7")
     private Long id;
 
-    @ApiModelProperty(value = "Target's name")
-    private String name;
-
-    @Lob
-    private byte[] data;
+    @ApiModelProperty(value = "Target's type")
+    private String type;
 
     @CreationTimestamp
     @ApiModelProperty(value = "Create date")
@@ -43,6 +40,6 @@ public class Target {
 
     @OneToMany(mappedBy = "target", cascade = CascadeType.ALL)
     @JsonIgnore
-    private List<ARC> arcs = new ArrayList<>();
+    private List<ImageTarget> imageTargets = new ArrayList<>();
 
 }

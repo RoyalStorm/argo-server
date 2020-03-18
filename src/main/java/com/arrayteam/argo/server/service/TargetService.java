@@ -13,18 +13,21 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
-import java.util.Random;
 
 
 @Service
 public class TargetService {
 
     private final TargetRepository targetRepository;
+    private final VirtualContentService virtualContentService;
+    private final ARCService arcService;
     private final ContentService contentService;
 
     @Autowired
-    public TargetService(TargetRepository targetRepository, ContentService contentService) {
+    public TargetService(TargetRepository targetRepository, VirtualContentService virtualContentService, ARCService arcService, ContentService contentService) {
         this.targetRepository = targetRepository;
+        this.virtualContentService = virtualContentService;
+        this.arcService = arcService;
         this.contentService = contentService;
     }
 
@@ -32,9 +35,6 @@ public class TargetService {
         Target target = new Target();
         VirtualContent virtualContent = new VirtualContent();
         ARC arc = new ARC();
-
-        target.setData(content.getBytes());
-        target.setName(String.valueOf(new Random().nextLong()));
 
         return new TargetResponse().success(targetRepository.save(target));
     }
@@ -62,7 +62,7 @@ public class TargetService {
 
         targetRepository.delete(target);
 
-        return new TargetResponse().success(target);
+        return new TargetResponse().success();
     }
 
 }

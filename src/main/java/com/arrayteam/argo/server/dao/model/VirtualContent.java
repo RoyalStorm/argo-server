@@ -16,7 +16,7 @@ import java.util.List;
 
 
 @Data
-@Table
+@Table(name = "VirtualContents")
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
@@ -27,11 +27,8 @@ public class VirtualContent {
     @ApiModelProperty(value = "Virtual content's unique id", example = "7")
     private Long id;
 
-    @ApiModelProperty(value = "Virtual content's name")
-    private String name;
-
-    @Lob
-    private byte[] data;
+    @ApiModelProperty(value = "Virtual content's type")
+    private String type;
 
     @CreationTimestamp
     @ApiModelProperty(value = "Create date")
@@ -43,6 +40,6 @@ public class VirtualContent {
 
     @OneToMany(mappedBy = "virtualContent", cascade = CascadeType.ALL)
     @JsonIgnore
-    private List<ARC> arcs = new ArrayList<>();
+    private List<VirtualContent3D> virtualContent3DS = new ArrayList<>();
 
 }
