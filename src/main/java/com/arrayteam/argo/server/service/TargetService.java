@@ -1,41 +1,28 @@
 package com.arrayteam.argo.server.service;
 
 
-import com.arrayteam.argo.server.dao.model.ARC;
 import com.arrayteam.argo.server.dao.model.Target;
-import com.arrayteam.argo.server.dao.model.VirtualContent;
 import com.arrayteam.argo.server.dao.response.TargetResponse;
 import com.arrayteam.argo.server.repository.TargetRepository;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
-
-import java.io.IOException;
 
 
 @Service
 public class TargetService {
 
     private final TargetRepository targetRepository;
-    private final VirtualContentService virtualContentService;
-    private final ARCService arcService;
     private final ContentService contentService;
 
     @Autowired
-    public TargetService(TargetRepository targetRepository, VirtualContentService virtualContentService, ARCService arcService, ContentService contentService) {
+    public TargetService(TargetRepository targetRepository, ContentService contentService) {
         this.targetRepository = targetRepository;
-        this.virtualContentService = virtualContentService;
-        this.arcService = arcService;
         this.contentService = contentService;
     }
 
-    public TargetResponse store(Long userId, MultipartFile content) throws IOException {
-        Target target = new Target();
-        VirtualContent virtualContent = new VirtualContent();
-        ARC arc = new ARC();
-
+    public TargetResponse store(Target target) {
         return new TargetResponse().success(targetRepository.save(target));
     }
 

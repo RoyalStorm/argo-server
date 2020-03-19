@@ -8,9 +8,6 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
-
-import java.io.IOException;
 
 
 @RestController
@@ -26,10 +23,9 @@ public class TargetController {
     }
 
     @PostMapping
-    @ApiOperation(value = "Create virtual content", response = TargetResponse.class)
-    public TargetResponse store(@RequestParam("userId") Long userId,
-                                @RequestParam("content") MultipartFile content) throws IOException {
-        return targetService.store(userId, content);
+    @ApiOperation(value = "Create target", response = TargetResponse.class)
+    public TargetResponse store(@RequestBody Target target) {
+        return targetService.store(target);
     }
 
     @GetMapping
