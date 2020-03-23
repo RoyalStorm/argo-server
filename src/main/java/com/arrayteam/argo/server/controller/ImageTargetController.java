@@ -1,6 +1,7 @@
 package com.arrayteam.argo.server.controller;
 
 
+import com.arrayteam.argo.server.dao.model.ImageTarget;
 import com.arrayteam.argo.server.dao.model.Target;
 import com.arrayteam.argo.server.dao.response.ImageTargetResponse;
 import com.arrayteam.argo.server.service.ImageTargetService;
@@ -33,6 +34,21 @@ public class ImageTargetController {
                                      @ApiParam(value = "Target's data")
                                              MultipartFile targetData) throws IOException {
         return imageTargetService.store(target, targetData);
+    }
+
+    @GetMapping
+    public ImageTargetResponse findAll() {
+        return imageTargetService.findAll();
+    }
+
+    @GetMapping("/{id}")
+    public ImageTargetResponse findOne(@PathVariable("id") ImageTarget imageTarget) {
+        return imageTargetService.findOne(imageTarget);
+    }
+
+    @DeleteMapping("/{id}")
+    public ImageTargetResponse destroy(@PathVariable("id") ImageTarget imageTarget) {
+        return imageTargetService.destroy(imageTarget);
     }
 
 }

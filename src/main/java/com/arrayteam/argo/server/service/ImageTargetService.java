@@ -34,4 +34,20 @@ public class ImageTargetService {
         return new ImageTargetResponse().success(imageTargetRepository.save(imageTarget));
     }
 
+    public ImageTargetResponse findAll() {
+        return new ImageTargetResponse().success(imageTargetRepository.findAll());
+    }
+
+    public ImageTargetResponse findOne(ImageTarget imageTarget) {
+        return new ImageTargetResponse().success(imageTarget);
+    }
+
+    public ImageTargetResponse destroy(ImageTarget imageTarget) {
+        if (imageTarget == null)
+            return new ImageTargetResponse().error(HttpStatus.BAD_REQUEST, "Resource with selected id not found");
+
+        imageTargetRepository.delete(imageTarget);
+
+        return new ImageTargetResponse().success();
+    }
 }
