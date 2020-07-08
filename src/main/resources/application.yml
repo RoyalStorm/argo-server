@@ -1,9 +1,9 @@
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://${host}:${port}/${databaseName}?useLegacyDatetimeCode=false&serverTimezone=${serverTimezone}
-    username: ${datasourceUsername}
-    password: ${datasourcePassword}
+    url: jdbc:mysql://${host}:${port}/${database}?useLegacyDatetimeCode=false&serverTimezone=${serverTimezone}
+    username: ${username}
+    password: ${password}
 
   jpa:
     hibernate:
