@@ -1,12 +1,9 @@
-<div align="center">
-    <img src="assets/argo-logo.png" alt="ARGO">
-</div>
-
 # ARGO server
+[![Build Status](https://travis-ci.com/array-team/argo-server.svg?branch=develop)](https://travis-ci.com/array-team/argo-server) [![codecov](https://codecov.io/gh/array-team/argo-server/branch/develop/graph/badge.svg)](https://codecov.io/gh/array-team/argo-server)
 Server for AR service to create effects of augmented reality "ARGO".
 
 ## Requirements
- - JDK 1.8
+ - Java 8
  
 ## Database
 API-server comes with MySQL dependency.
@@ -18,9 +15,9 @@ Download project as '.zip' archive and extract it to whatever you like directory
 git clone https://github.com/RoyalStorm/argo-server.git
 ```
 
-Create database with name `argo` in MySQL.
-Open this repository in IntelliJ IDEA and add `host`, `port`, `databasename`, `serverTimezone`, `datasourceUsername`
-and `datasourcePassword` environment variables, see `application.yml`.
+Create a database with name `argo` in MySQL.
+Open this repository in IntelliJ IDEA and add `host`, `port`, `database`, `serverTimezone`, `username` and `password`
+environment variables, see `application.yml`.
 
 OR
 
