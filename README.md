@@ -1,5 +1,6 @@
 # ARGO server
 [![Build Status](https://travis-ci.com/array-team/argo-server.svg?branch=develop)](https://travis-ci.com/array-team/argo-server) [![codecov](https://codecov.io/gh/array-team/argo-server/branch/develop/graph/badge.svg)](https://codecov.io/gh/array-team/argo-server)
+
 Server for AR service to create effects of augmented reality "ARGO".
 
 ## Requirements
