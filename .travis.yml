@@ -1,0 +1,9 @@
+language: java
+jdk: oraclejdk14
+
+git:
+  depth: 5
+
+script:
+  - cd app
+  - ./gradlew clean check test build
