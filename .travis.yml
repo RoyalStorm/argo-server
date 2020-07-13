@@ -1,9 +1,14 @@
 language: java
-jdk: oraclejdk14
+jdk: oraclejdk8
 
 git:
-  depth: 5
+  depth: 1
 
 script:
-  - cd app
-  - ./gradlew clean check test build
+  - ./gradlew clean build
+
+after_success:
+  - bash <(curl -s https://codecov.io/bash)
+
+notifications:
+  email: false
